@@ -9,6 +9,7 @@
     "url": "https://github.com/JacobLutin/react-redux-first-app.git"
   },
   "scripts": {
+		"prestart": "babel-node tools/startMessage",
     "start": "babel-node tools/srcServer.js"
   },
   "dependencies": {
