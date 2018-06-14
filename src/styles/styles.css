@@ -2,3 +2,7 @@
 #app {
 	/*font: 14px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;*/
 }
+
+#courses-table thead th {
+	min-width: 200px;
+}

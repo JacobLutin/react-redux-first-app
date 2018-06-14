@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import CoursesList from './CoursesList';
 
 class CoursesPage extends React.Component {
   constructor(props, context) {
@@ -21,21 +22,18 @@ class CoursesPage extends React.Component {
     this.setState({ course: course });
   }
 
-  courseRow(course, index) {
-    return <div key={index}>{course.title}</div>;
-  }
-
   onClickSave(event) {
     event.preventDefault();
     this.props.actions.createCourse(this.state.course);
   }
 
   render() {
+    const {courses} = this.props;
     return (
       <div>
         <div className="py-4">
           <h1>Courses</h1>
-          {this.props.courses.map(this.courseRow)}
+          <CoursesList courses={courses}/>
         </div> 
         <div className="col-md-6 order-md-1">
           <h4 className="mb-3">Add course:</h4>
@@ -71,6 +69,5 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(courseActions, dispatch)
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
