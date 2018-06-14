@@ -7,7 +7,7 @@ const CourseListRow = ({course}) => {
       <td><Link to={'course/' + course.id}>{course.title}</Link></td>
       <td>{course.authorId}</td>
       <td>{course.category}</td>
-      <td>{course.title}</td>
+      <td>{course.length}</td>
     </tr>
   );
 };
