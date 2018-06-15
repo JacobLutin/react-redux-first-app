@@ -22,6 +22,16 @@ describe('CourseForm saving test', () => {
     expect(wrapper.find('h4').length).toBe(1);
   });
 
+  it('h4 renders "Edit course" when updating course', () => {
+    const wrapper = setup({ course: {id: 1} });
+    expect(wrapper.find('h4').text()).toEqual('Edit course');
+  });
+
+  it('h4 renders "Add course" when creating new course', () => {
+    const wrapper = setup();
+    expect(wrapper.find('h4').text()).toEqual('Add course');
+  });
+
   it('save button is rendered', () => {
     const wrapper = setup();
     expect(wrapper.find('input').findWhere(node =>
