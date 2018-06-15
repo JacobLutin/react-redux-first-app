@@ -15,7 +15,7 @@ class EditCoursePage extends React.Component {
     };
     
     this.updateCourseState = this.updateCourseState.bind(this);
-    this.onSave = this.onSave.bind(this);
+    this.saveCourse = this.saveCourse.bind(this);
   }
 
   updateCourseState(event) {
@@ -25,7 +25,7 @@ class EditCoursePage extends React.Component {
     return this.setState({ course: course });
   }
 
-  onSave(event) {
+  saveCourse(event) {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
     toastr.success('Course ' + this.state.course.title + ' successfully saved!');
@@ -38,7 +38,7 @@ class EditCoursePage extends React.Component {
         <CourseForm course={this.state.course}
                     errors={this.state.errors}
                     onChange={this.updateCourseState}
-                    onSave={this.onSave} />
+                    onSave={this.saveCourse} />
       </div>
     );
   }
