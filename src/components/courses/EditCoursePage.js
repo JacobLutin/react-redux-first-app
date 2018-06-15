@@ -47,17 +47,31 @@ class EditCoursePage extends React.Component {
 
 EditCoursePage.propTypes = {
   actions: PropTypes.object.isRequired,
-  initialCourse: PropTypes.object
+  initialCourse: PropTypes.object.isRequired
 };
 
 EditCoursePage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
+function getCourseById(courses, courseId) {
+  const course = courses.filter(course => course.id == courseId);
+  if (course) {
+    return course[0];
+  } else {
+    return null;
+  }
+}
+
 function mapStateToProps(state, ownProps) {
-  // let course = {id: '', title: '', authorId: '', length: '', category: ''};
+  const courseId = ownProps.params.id; // from the path /course/:id
+  let course = {};
+  if (courseId) {
+    course = getCourseById(state.courses, courseId);
+  }
+
   return {
-    course: state.course
+    initialCourse: course
   };
 }
 
