@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
@@ -8,23 +9,6 @@ class CoursesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     
-    this.state = {
-      course: { title: '' }
-    };
-
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onClickSave = this.onClickSave.bind(this);
-  }
-
-  onTitleChange(event) {
-    const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({ course: course });
-  }
-
-  onClickSave(event) {
-    event.preventDefault();
-    this.props.actions.createCourse(this.state.course);
   }
 
   render() {
@@ -34,20 +18,8 @@ class CoursesPage extends React.Component {
         <div className="py-4">
           <h1>Courses</h1>
           <CoursesList courses={courses}/>
+          <Link to="/course" className="btn btn-primary">Add course</Link>
         </div> 
-        <div className="col-md-6 order-md-1">
-          <h4 className="mb-3">Add course:</h4>
-          <form>
-            <div className="form-group">
-              <label forHtml="title">Title</label>
-              <input type="text" onChange={this.onTitleChange}
-                     name="title" value={this.state.course.title}
-                     className="form-control"/>
-            </div>
-            <input type="submit" className="btn btn-primary"
-                   value="Save" onClick={this.onClickSave}/>
-          </form>
-        </div>
       </div>
     );
   }
