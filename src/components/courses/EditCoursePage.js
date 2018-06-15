@@ -30,15 +30,17 @@ class EditCoursePage extends React.Component {
     event.preventDefault();
     this.setState({ saving: true });
     this.props.actions.saveCourse(this.state.course)
-      .then(() => {
-        this.setState({ saving: false });
-        toastr.success('Course ' + this.state.course.title + ' successfully saved!');
-        this.context.router.push('/courses');
-      })
+      .then(() => this.redirect())
       .catch(error => {
         toastr.error(error);
         this.setState({ saving: false });
       });
+  }
+
+  redirect() {
+    this.setState({ saving: false });
+    toastr.success('Course ' + this.state.course.title + ' successfully saved!');
+    this.context.router.push('/courses');
   }
 
   render() {

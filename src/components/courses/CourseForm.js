@@ -40,7 +40,7 @@ const CourseForm = ({course, errors, saving, onChange, onSave }) => {
       <div className="py-4">
         <input type="submit" className="btn btn-success"
                value={saving ? 'Saving...' : 'Save'} 
-               disable={saving}
+               disabled={saving}
                onClick={onSave}/>
       </div>
     </form>
