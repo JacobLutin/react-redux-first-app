@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as toastr from 'toastr';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 
@@ -13,19 +14,20 @@ class EditCoursePage extends React.Component {
       errors: {}
     };
     
-    this.onChange = this.onChange.bind(this);
+    this.updateCourseState = this.updateCourseState.bind(this);
     this.onSave = this.onSave.bind(this);
   }
 
-  onChange(event) {
-    const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({ course: course });
+  updateCourseState(event) {
+    const field = event.target.name;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({ course: course });
   }
 
   onSave(event) {
     event.preventDefault();
-    this.props.actions.createCourse(this.state.course);
+    this.props.actions.saveCourse(this.state.course);
   }
 
   render() {
@@ -34,7 +36,7 @@ class EditCoursePage extends React.Component {
         <h1>Editing Course Page</h1>
         <CourseForm course={this.state.course}
                     errors={this.state.errors}
-                    onChange={this.onChange}
+                    onChange={this.updateCourseState}
                     onSave={this.onSave} />
       </div>
     );
@@ -47,8 +49,9 @@ EditCoursePage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+  // let course = {id: '', title: '', authorId: '', length: '', category: ''};
   return {
-    courses: state.courses
+    course: state.course
   };
 }
 
