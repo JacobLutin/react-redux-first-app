@@ -28,6 +28,7 @@ class EditCoursePage extends React.Component {
   onSave(event) {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
+    toastr.success('Course ' + this.state.course.title + ' successfully saved!');
   }
 
   render() {
