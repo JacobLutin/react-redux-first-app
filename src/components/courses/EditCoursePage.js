@@ -34,7 +34,7 @@ class EditCoursePage extends React.Component {
 
   render() {
     return (
-      <div className="py-4">
+      <div>
         <h1>Editing Course Page</h1>
         <CourseForm course={this.state.course}
                     errors={this.state.errors}

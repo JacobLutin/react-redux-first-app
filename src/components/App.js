@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-        <div className="container">
+        <div className="container px-3 py-3 pt-md-5 pb-md-4 mx-auto">
           {this.props.children}
         </div>
       </div>
