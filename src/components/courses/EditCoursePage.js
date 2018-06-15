@@ -29,6 +29,7 @@ class EditCoursePage extends React.Component {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
     toastr.success('Course ' + this.state.course.title + ' successfully saved!');
+    this.context.router.push('/courses');
   }
 
   render() {
@@ -47,6 +48,10 @@ class EditCoursePage extends React.Component {
 EditCoursePage.propTypes = {
   actions: PropTypes.object.isRequired,
   initialCourse: PropTypes.object
+};
+
+EditCoursePage.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
