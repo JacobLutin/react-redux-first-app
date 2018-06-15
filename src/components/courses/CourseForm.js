@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const CourseForm = ({course, errors, onChange, onSave }) => {
+const CourseForm = ({course, errors, saving, onChange, onSave }) => {
   return (
     <form className="py-4">
       <h4>{course.id ? 'Edit course' : 'Add course'}</h4>
@@ -39,7 +39,9 @@ const CourseForm = ({course, errors, onChange, onSave }) => {
       </div>
       <div className="py-4">
         <input type="submit" className="btn btn-success"
-               value="Save" onClick={onSave}/>
+               value={saving ? 'Saving...' : 'Save'} 
+               disable={saving}
+               onClick={onSave}/>
       </div>
     </form>
   );
@@ -48,6 +50,7 @@ const CourseForm = ({course, errors, onChange, onSave }) => {
 CourseForm.propTypes = {
   course: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  saving: PropTypes.bool.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired
 };

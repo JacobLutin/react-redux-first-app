@@ -11,7 +11,8 @@ class EditCoursePage extends React.Component {
 
     this.state = {
       course: Object.assign({}, this.props.initialCourse),
-      errors: {}
+      errors: {},
+      saving: false
     };
     
     this.updateCourseState = this.updateCourseState.bind(this);
@@ -27,9 +28,17 @@ class EditCoursePage extends React.Component {
 
   saveCourse(event) {
     event.preventDefault();
-    this.props.actions.saveCourse(this.state.course);
-    toastr.success('Course ' + this.state.course.title + ' successfully saved!');
-    this.context.router.push('/courses');
+    this.setState({ saving: true });
+    this.props.actions.saveCourse(this.state.course)
+      .then(() => {
+        this.setState({ saving: false });
+        toastr.success('Course ' + this.state.course.title + ' successfully saved!');
+        this.context.router.push('/courses');
+      })
+      .catch(error => {
+        toastr.error(error);
+        this.setState({ saving: false });
+      });
   }
 
   render() {
@@ -38,6 +47,7 @@ class EditCoursePage extends React.Component {
         <h1>Editing Course Page</h1>
         <CourseForm course={this.state.course}
                     errors={this.state.errors}
+                    saving={this.state.saving}
                     onChange={this.updateCourseState}
                     onSave={this.saveCourse} />
       </div>
