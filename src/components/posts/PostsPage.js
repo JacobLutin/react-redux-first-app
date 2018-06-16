@@ -15,7 +15,7 @@ class PostsPage extends React.Component {
 
   postElement(post) {
     return (
-      <div key={post.id}>
+      <div key={post.id} className="col-md-8 py-2 post">
         <h4>{ post.title }</h4>
         <p>{ post.body }</p>
       </div>
@@ -38,6 +38,7 @@ class PostsPage extends React.Component {
     return (
       <div>
         <h1>Posts</h1>
+        <br/>
         { (error) ? this.showError(error)
                   : posts.map(post => this.postElement(post))}
       </div>

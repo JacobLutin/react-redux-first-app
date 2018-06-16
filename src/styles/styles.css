@@ -6,3 +6,7 @@
 #courses-table thead th {
 	min-width: 200px;
 }
+
+div.post {
+	padding-left: 0px;
+}
