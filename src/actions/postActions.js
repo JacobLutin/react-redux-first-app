@@ -5,13 +5,17 @@ export function loadPostsSuccess(posts) {
   return {type: types.LOAD_POSTS_SUCCESS, posts: posts};
 }
 
+export function loadPostsFailure(error) {
+  return {type: types.LOAD_POSTS_FAILURE, error: error};
+}
+
 export function loadPosts() {
   return function(dispatch) {
     return fetch(PostApi).then(response => response.json())
       .then(json => {
         return dispatch(loadPostsSuccess(json));
       }).catch(error => {
-        throw(error);
+        return dispatch(loadPostsFailure(error));
       });
   };
 } 

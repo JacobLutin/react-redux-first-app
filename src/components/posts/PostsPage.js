@@ -22,13 +22,24 @@ class PostsPage extends React.Component {
     );
   }
 
+  showError(error) {
+    return (
+      <div className="alert alert-danger col-md-6">
+        Error: { error.message }
+      </div>
+    );
+  }
+
 
   render() {
     const posts = this.props.posts; 
+    const error = this.props.error;
+
     return (
       <div>
         <h1>Posts</h1>
-        {posts.map(post => this.postElement(post))}
+        { (error) ? this.showError(error)
+                  : posts.map(post => this.postElement(post))}
       </div>
     );
   }
@@ -36,13 +47,12 @@ class PostsPage extends React.Component {
 
 PostsPage.propTypes = {
   posts: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  error: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
-  return {
-    posts: state.posts
-  };
+  return state.postsResponse;
 }
 
 function mapDispatchToProps(dispatch) {

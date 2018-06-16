@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import courses from './courseReducer';
-import posts from './postReducer';
+import postsResponse from './postReducer';
 
 const rootReducer = combineReducers({
 	courses,
-	posts
+	postsResponse
 });
 
 export default rootReducer;
