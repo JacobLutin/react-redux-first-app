@@ -11,6 +11,7 @@ const Header = () => {
             <IndexLink to="/" className="nav-item nav-link" activeClassName="active">Home</IndexLink>
             <Link to="/about" className="nav-item nav-link" activeClassName="active">About</Link>
             <Link to="/courses" className="nav-item nav-link" activeClassName="active">Courses</Link>
+            <Link to="/posts" className="nav-item nav-link" activeClassName="active">Posts</Link>
             <Link to="/test" className="nav-item nav-link" activeClassName="active">Test</Link>
           </div>
         </div>
