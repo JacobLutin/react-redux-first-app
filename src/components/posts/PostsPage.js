@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as postActions from '../../actions/postActions';
 import PostsList from './PostsList';
 
-class PostsPage extends React.Component {
+export class PostsPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
