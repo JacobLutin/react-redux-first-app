@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as postActions from '../../actions/postActions';
+import PostsList from './PostsList';
 
 class PostsPage extends React.Component {
   constructor(props, context) {
@@ -11,15 +12,6 @@ class PostsPage extends React.Component {
     //   posts = {},
     //   actions = {}
     // };
-  }
-
-  postElement(post) {
-    return (
-      <div key={post.id} className="col-md-8 py-2 post">
-        <h4>{ post.title }</h4>
-        <p>{ post.body }</p>
-      </div>
-    );
   }
 
   showError(error) {
@@ -39,8 +31,8 @@ class PostsPage extends React.Component {
       <div>
         <h1>Posts</h1>
         <br/>
-        { (error) ? this.showError(error)
-                  : posts.map(post => this.postElement(post))}
+        { error ? this.showError(error) 
+                : <PostsList posts={posts} />}
       </div>
     );
   }
